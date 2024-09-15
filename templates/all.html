@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% from 'bootstrap5/form.html' import render_form %}
+{% block content %}
+
+<div class="jumbotron text-center">
+    <div class="container">
+        <h1 class="display-4">✒️ToDo List📝</h1>
+        <p class="lead">See the list</p>
+        <hr class="my-4">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>All Cafes</h1>
+                {% for al in all_list: %}
+                <h2>{{ al.name}} / {{ al.date }}</h2>
+                <ul style="list-style-type: none;">
+                    {% for atd in all_todo: %}
+                    {% if atd.list_id == al.id: %}
+                    <li class="{{ 'checked' if atd.is_checked else '' }}">
+                        {{ atd.content }}
+                        <form action="{{ url_for('toggle_check', todo_id=atd.id) }}" method="post"
+                              style="display:inline;">
+                            <button type="submit">Done</button>
+                        </form>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+                {% endfor %}
+            </div>
+        </div>
+        <div>
+            <a class="btn btn-warning btn-sm" href="{{ url_for('home') }}">Back to homepage</a>
+            <a class="btn btn-warning btn-sm" href="{{ url_for('create_list') }}">Create new list</a>
+            <a class="btn btn-warning btn-sm" href="{{ url_for('create_todo') }}">Add todo</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

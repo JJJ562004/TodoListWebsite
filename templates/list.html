@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% from 'bootstrap5/form.html' import render_form %}
+{% block content %}
+
+<div class="jumbotron text-center">
+    <div class="container">
+        <h1 class="display-4">✒️ToDo List📝</h1>
+        <p class="lead">Try creating your list</p>
+        <hr class="my-4">
+        {{ render_form(form, novalidate= True) }}
+        <a class="btn btn-warning btn-lg" href="{{ url_for('show_all') }}" role="button">Show all!</a>
+        <a class="btn btn-warning btn-lg" href="{{ url_for('create_todo') }}" role="button">Create Todo!</a>
+    </div>
+</div>
+
+{% endblock %}
