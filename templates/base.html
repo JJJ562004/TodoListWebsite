@@ -18,6 +18,11 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
+<nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+      <a href="{{ url_for('logout') }}" class="btn btn-warning" type="button">Logout</a>
+  </div>
+</nav>
 {% block content %}{% endblock %}
 </body>
 </html>
